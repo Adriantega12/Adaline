@@ -16,6 +16,9 @@ class MainWindow : public QMainWindow {
 
     private:
         Ui::MainWindow *ui;
+
+    public slots:
+        void plotClick( QMouseEvent* );
     };
 
 #endif // MAINWINDOW_H
