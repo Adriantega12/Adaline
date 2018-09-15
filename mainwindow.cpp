@@ -7,11 +7,13 @@ MainWindow::MainWindow(QWidget *parent) :
     // Basic setup
     ui->setupUi(this);
 
-    // Train plot setup
+    // Training plot setup
+    trainingPlot = new TrainingPlot( ui->trainingPlot );
     connect( ui->trainingPlot, SIGNAL( mousePress(QMouseEvent*) ), this, SLOT( plotClick(QMouseEvent*) ) );
     }
 
 MainWindow::~MainWindow() {
+    delete trainingPlot;
     delete ui;
     }
 
@@ -19,5 +21,7 @@ void MainWindow::plotClick( QMouseEvent* evt ) {
     if ( ui->trainingPlot->axisRect()->rect().contains( evt->pos() ) ) {
         double x = ui->trainingPlot->xAxis->pixelToCoord( evt->x() ),
                y = ui->trainingPlot->yAxis->pixelToCoord( evt->y() );
+
+        trainingPlot->addRedPoint( x, y );
         }
     }

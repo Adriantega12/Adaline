@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+#include "trainingplot.h"
+
 namespace Ui {
     class MainWindow;
     }
@@ -16,6 +18,7 @@ class MainWindow : public QMainWindow {
 
     private:
         Ui::MainWindow *ui;
+        TrainingPlot* trainingPlot;
 
     public slots:
         void plotClick( QMouseEvent* );
