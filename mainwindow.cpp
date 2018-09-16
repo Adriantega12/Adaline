@@ -7,6 +7,9 @@ MainWindow::MainWindow(QWidget *parent) :
     // Basic setup
     ui->setupUi(this);
 
+    // Training module setup
+    trainingModule = new TrainingModule;
+
     // Training plot setup
     trainingPlot = new TrainingPlot( ui->trainingPlot );
     connect( ui->trainingPlot, SIGNAL( mousePress(QMouseEvent*) ), this, SLOT( plotClick(QMouseEvent*) ) );
@@ -14,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow() {
     delete trainingPlot;
+    delete trainingModule;
     delete ui;
     }
 
@@ -23,9 +27,13 @@ void MainWindow::plotClick( QMouseEvent* evt ) {
                y = ui->trainingPlot->yAxis->pixelToCoord( evt->y() );
 
         // Add points according to the selected class
-        if ( ui->redRB->isChecked() )
+        if ( ui->redRB->isChecked() ) {
             trainingPlot->addRedPoint( x, y );
-        else if ( ui->blueRB->isChecked() )
+            trainingModule->addPoint( x, y, TrainingModule::RED );
+            }
+        else if ( ui->blueRB->isChecked() ) {
             trainingPlot->addBluePoint( x, y );
+            trainingModule->addPoint( x, y, TrainingModule::BLUE );
+            }
         }
     }
