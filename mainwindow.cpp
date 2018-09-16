@@ -9,6 +9,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Training module setup
     trainingModule = new TrainingModule;
+    trainingModule->connectGUIToValues( ui->weight0Val,
+                                        ui->weight1Val,
+                                        ui->weight2Val,
+                                        ui->currentEpochVal,
+                                        ui->convergenceEpochVal );
 
     // Training plot setup
     trainingPlot = new TrainingPlot( ui->trainingPlot );
@@ -36,4 +41,8 @@ void MainWindow::plotClick( QMouseEvent* evt ) {
             trainingModule->addPoint( x, y, TrainingModule::BLUE );
             }
         }
+    }
+
+void MainWindow::on_initializeBttn_clicked() {
+    trainingModule->updateGUI();
     }
