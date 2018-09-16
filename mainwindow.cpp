@@ -44,5 +44,6 @@ void MainWindow::plotClick( QMouseEvent* evt ) {
     }
 
 void MainWindow::on_initializeBttn_clicked() {
+    trainingModule->setup( ui->maxEpochsSB->value(), ui->learnRateSB->value(), ui->desiredErrorSB->value() );
     trainingModule->updateGUI();
     }

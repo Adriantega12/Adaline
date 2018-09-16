@@ -34,7 +34,8 @@ HEADERS += \
         mainwindow.h \
     qcustomplot.h \
     trainingplot.h \
-    trainingmodule.h
+    trainingmodule.h \
+    randdouble.h
 
 FORMS += \
         mainwindow.ui

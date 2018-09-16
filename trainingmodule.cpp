@@ -10,7 +10,11 @@ void TrainingModule::updateLabels() {
 
 TrainingModule::TrainingModule()
     : weight0(0.0), weight1(0.0), weight2(0.0), currentEpoch(0), convEpoch(0),
-      maxEpochs(99999), learningRate(0.0), desiredError(0.0) {
+      maxEpochs(99999), learningRate(0.0), desiredError(0.0), rdg(-5.0, 5.0) {
+
+    }
+
+TrainingModule::~TrainingModule() {
 
     }
 
@@ -26,6 +30,9 @@ void TrainingModule::setup(unsigned int mE, double lR, double dE) {
     maxEpochs = mE;
     learningRate = lR;
     desiredError = dE;
+    weight0 = rdg();
+    weight1 = rdg();
+    weight2 = rdg();
     }
 
 void TrainingModule::updateValues() {

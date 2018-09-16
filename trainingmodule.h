@@ -6,6 +6,8 @@
 
 #include <vector>
 
+#include "randdouble.h"
+
 class TrainingModule {
     private:
         struct Pair {
@@ -31,6 +33,8 @@ class TrainingModule {
         QLabel* currentEpochLbl;
         QLabel* convergenceEpochLbl;
 
+        Rand_double rdg;
+
         std::vector<Pair> trainingSet;
 
         void updateLabels();
@@ -40,6 +44,7 @@ class TrainingModule {
         static const int BLUE = 1;
 
         TrainingModule();
+        ~TrainingModule();
 
         void connectGUIToValues( QLabel* w0, QLabel* w1, QLabel* w2, QLabel* cE, QLabel* conv );
 
