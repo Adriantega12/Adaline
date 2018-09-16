@@ -12,8 +12,7 @@ TrainingPlot::TrainingPlot( QCustomPlot* plot ) {
     }
 
 TrainingPlot::~TrainingPlot() {
-    delete redPoints;
-    delete bluePoints;
+
     }
 
 void TrainingPlot::setup( QCustomPlot* plot ) {
@@ -23,6 +22,9 @@ void TrainingPlot::setup( QCustomPlot* plot ) {
     redPoints->setPen( QPen(Qt::red) );
     redPoints->setLineStyle( QCPGraph::lsNone );
     redPoints->setScatterStyle(QCPScatterStyle::ssCircle);
+    bluePoints->setPen( QPen(Qt::blue) );
+    bluePoints->setLineStyle( QCPGraph::lsNone );
+    bluePoints->setScatterStyle(QCPScatterStyle::ssCircle);
     }
 
 void TrainingPlot::addRedPoint( double x, double y ) {

@@ -22,6 +22,10 @@ void MainWindow::plotClick( QMouseEvent* evt ) {
         double x = ui->trainingPlot->xAxis->pixelToCoord( evt->x() ),
                y = ui->trainingPlot->yAxis->pixelToCoord( evt->y() );
 
-        trainingPlot->addRedPoint( x, y );
+        // Add points according to the selected class
+        if ( ui->redRB->isChecked() )
+            trainingPlot->addRedPoint( x, y );
+        else if ( ui->blueRB->isChecked() )
+            trainingPlot->addBluePoint( x, y );
         }
     }
