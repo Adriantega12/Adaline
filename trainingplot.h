@@ -7,7 +7,6 @@ class TrainingPlot {
     private:
         QCustomPlot* trainingPlot;
 
-        QCPGraph* clickedPoints;
         QCPGraph* redPoints;
         QCPGraph* bluePoints;
 
@@ -17,7 +16,7 @@ class TrainingPlot {
         TrainingPlot( QCustomPlot* plot );
         ~TrainingPlot();
 
-        void setup( QCustomPlot* );
+        void setup( QCustomPlot* plot );
 
         void addRedPoint( double x, double y );
         void addBluePoint( double x, double y );
