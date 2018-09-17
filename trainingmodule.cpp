@@ -44,9 +44,11 @@ void TrainingModule::updateGUI() {
     }
 
 void TrainingModule::train() {
-    /*
-     * while (epochs < maxEpochs and error < desiredError) { }
-     */
+    double error = 0.0;
+    currentEpoch = 0;
+
+
+    while (currentEpoch < maxEpochs and error < desiredError) { }
     }
 
 void TrainingModule::addPoint( double x, double y, int type ) {
