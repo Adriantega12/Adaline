@@ -16,7 +16,7 @@ double TrainingModule::sigmoidFunction(double xVal) {
     return 1.0 / (1.0 + qExp( -xVal ) );
 }
 
-double TrainingModule::getError(TrainingModule::Pair p, std::function<double (double)> activationFunction) {
+double TrainingModule::getError(Pair p, std::function<double (double)> activationFunction) {
     return p.type - activationFunction( inputAndWeightsPointProduct( p.x, p.y ) );
     }
 

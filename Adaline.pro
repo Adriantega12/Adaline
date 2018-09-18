@@ -29,7 +29,8 @@ SOURCES += \
     qcustomplot.cpp \
     trainingplot.cpp \
     trainingmodule.cpp \
-    adaline.cpp
+    adaline.cpp \
+    perceptron.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -37,7 +38,10 @@ HEADERS += \
     trainingplot.h \
     trainingmodule.h \
     randdouble.h \
-    adaline.h
+    adaline.h \
+    perceptron.h \
+    neuron.h \
+    pair.h
 
 FORMS += \
         mainwindow.ui

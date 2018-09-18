@@ -2,4 +2,4 @@
 
 Adaline::Adaline() {
 
-}
+    }

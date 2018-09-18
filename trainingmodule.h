@@ -9,15 +9,10 @@
 #include <functional>
 
 #include "randdouble.h"
+#include "pair.h"
 
 class TrainingModule {
     private:
-        struct Pair {
-            double x;
-            double y;
-            int type;
-            };
-
         double weight0;
         double weight1;
         double weight2;
