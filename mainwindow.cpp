@@ -47,3 +47,7 @@ void MainWindow::on_initializeBttn_clicked() {
     trainingModule->setup( ui->maxEpochsSB->value(), ui->learnRateSB->value(), ui->desiredErrorSB->value() );
     trainingModule->updateGUI();
     }
+
+void MainWindow::on_trainBttn_clicked() {
+    trainingModule->train();
+    }

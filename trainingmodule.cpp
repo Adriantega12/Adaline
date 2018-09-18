@@ -14,7 +14,12 @@ double TrainingModule::inputAndWeightsPointProduct(double x, double y) {
 
 double TrainingModule::sigmoidFunction(double xVal) {
     return 1.0 / (1.0 + qExp( -xVal ) );
-}
+    }
+
+double TrainingModule::activationFunctionDerivative(std::function<double(double)> activationFunction, double xVal) {
+    double functionRes = activationFunction( xVal );
+    return functionRes * ( 1 - functionRes );
+    }
 
 double TrainingModule::getError(Pair p, std::function<double (double)> activationFunction) {
     return p.type - activationFunction( inputAndWeightsPointProduct( p.x, p.y ) );
@@ -56,15 +61,28 @@ void TrainingModule::updateGUI() {
     }
 
 void TrainingModule::train() {
-    double error = 0.0;
+    double error;
+    double squaredError = 1.0;
     currentEpoch = 0;
 
-
-    while (currentEpoch < maxEpochs and error < desiredError) { }
+    while (currentEpoch < maxEpochs and squaredError > desiredError) {
+        squaredError = error = 0.0;
+        for ( unsigned int j = 0; j < trainingSet.size(); ++j ) {
+            error = getError( trainingSet[j], sigmoidFunction );
+            squaredError += error * error;
+            weight0 += learningRate * error *
+                    activationFunctionDerivative( TrainingModule::sigmoidFunction, inputAndWeightsPointProduct( trainingSet[j].x, trainingSet[j].y ) );
+            weight1 += learningRate * error *
+                    activationFunctionDerivative( TrainingModule::sigmoidFunction, inputAndWeightsPointProduct( trainingSet[j].x, trainingSet[j].y ) );
+            weight2 += learningRate * error *
+                    activationFunctionDerivative( TrainingModule::sigmoidFunction, inputAndWeightsPointProduct( trainingSet[j].x, trainingSet[j].y ) );
+            }
+        qDebug() << currentEpoch++ << ": " << squaredError;
+        //currentEpoch++;
+        }
     }
 
 void TrainingModule::addPoint( double x, double y, int type ) {
     Pair p;
     trainingSet.push_back( p = { x, y, type } );
-    qDebug() << p.x << " " << p.y << " " << p.type;
     }
