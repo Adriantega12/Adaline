@@ -6,6 +6,18 @@ void TrainingModule::updateLabels() {
     w2Lbl->setText( QString::number( weight2 ) );
     currentEpochLbl->setText( QString::number( currentEpoch ) );
     convergenceEpochLbl->setText( QString::number( convEpoch ) );
+}
+
+double TrainingModule::inputAndWeightsPointProduct(double x, double y) {
+    return x * weight1 + y * weight2 - weight0;
+}
+
+double TrainingModule::sigmoidFunction(double xVal) {
+    return 1.0 / (1.0 + qExp( -xVal ) );
+}
+
+double TrainingModule::getError(TrainingModule::Pair p, std::function<double (double)> activationFunction) {
+    return p.type - activationFunction( inputAndWeightsPointProduct( p.x, p.y ) );
     }
 
 TrainingModule::TrainingModule()
@@ -48,7 +60,9 @@ void TrainingModule::train() {
     currentEpoch = 0;
 
 
-    while (currentEpoch < maxEpochs and error < desiredError) { }
+    while (currentEpoch < maxEpochs and error < desiredError) {
+
+        }
     }
 
 void TrainingModule::addPoint( double x, double y, int type ) {
