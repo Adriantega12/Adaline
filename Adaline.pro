@@ -28,20 +28,28 @@ SOURCES += \
         mainwindow.cpp \
     qcustomplot.cpp \
     trainingplot.cpp \
+<<<<<<< HEAD
     trainingmodule.cpp \
     adaline.cpp \
     perceptron.cpp
+=======
+    trainingmodule.cpp
+>>>>>>> parent of 87f3c46... Add Adaline operations
 
 HEADERS += \
         mainwindow.h \
     qcustomplot.h \
     trainingplot.h \
     trainingmodule.h \
+<<<<<<< HEAD
     randdouble.h \
     adaline.h \
     perceptron.h \
     neuron.h \
     pair.h
+=======
+    randdouble.h
+>>>>>>> parent of 87f3c46... Add Adaline operations
 
 FORMS += \
         mainwindow.ui

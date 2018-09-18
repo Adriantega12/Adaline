@@ -60,9 +60,7 @@ void TrainingModule::train() {
     currentEpoch = 0;
 
 
-    while (currentEpoch < maxEpochs and error < desiredError) {
-
-        }
+    while (currentEpoch < maxEpochs and error < desiredError) { }
     }
 
 void TrainingModule::addPoint( double x, double y, int type ) {

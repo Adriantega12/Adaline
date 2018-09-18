@@ -3,10 +3,8 @@
 
 #include <QLabel>
 #include <QDebug>
-#include <QtMath>
 
 #include <vector>
-#include <functional>
 
 #include "randdouble.h"
 #include "pair.h"
@@ -35,11 +33,6 @@ class TrainingModule {
         std::vector<Pair> trainingSet;
 
         void updateLabels();
-
-        // Maths
-        double inputAndWeightsPointProduct( double x, double y );
-        double sigmoidFunction( double xVal );
-        double getError( Pair p, std::function<double(double)> activationFunction);
 
     public:
         static const int RED = 0;
