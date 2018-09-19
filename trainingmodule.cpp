@@ -69,7 +69,7 @@ void TrainingModule::train() {
         squaredError = error = 0.0;
         for ( unsigned int j = 0; j < trainingSet.size(); ++j ) {
             error = getError( trainingSet[j], sigmoidFunction );
-            squaredError += error * error;
+            squaredError += (error * error) / 2;
             weight0 += learningRate * error *
                     activationFunctionDerivative( TrainingModule::sigmoidFunction, inputAndWeightsPointProduct( trainingSet[j].x, trainingSet[j].y ) );
             weight1 += learningRate * error *
@@ -85,4 +85,12 @@ void TrainingModule::train() {
 void TrainingModule::addPoint( double x, double y, int type ) {
     Pair p;
     trainingSet.push_back( p = { x, y, type } );
+}
+
+double TrainingModule::getSlope() {
+    return - ( weight0 / weight2 ) / ( weight0 / weight1 );
+    }
+
+double TrainingModule::getYIntercept() {
+    return weight0 / weight2;
     }

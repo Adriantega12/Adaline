@@ -9,10 +9,15 @@
 #include <functional>
 
 #include "randdouble.h"
-#include "pair.h"
 
 class TrainingModule {
     private:
+        struct Pair {
+            double x;
+            double y;
+            int type;
+            };
+
         double weight0;
         double weight1;
         double weight2;
@@ -59,6 +64,9 @@ class TrainingModule {
         void train();
 
         void addPoint( double x, double y, int type = RED );
+
+        double getSlope();
+        double getYIntercept();
     };
 
 #endif // TRAININGMODULE_H

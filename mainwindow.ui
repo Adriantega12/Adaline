@@ -73,9 +73,9 @@
    <widget class="QGroupBox" name="paramsGB">
     <property name="geometry">
      <rect>
-      <x>220</x>
+      <x>200</x>
       <y>440</y>
-      <width>221</width>
+      <width>241</width>
       <height>121</height>
      </rect>
     </property>
@@ -93,7 +93,7 @@
      <item row="0" column="1">
       <widget class="QSpinBox" name="maxEpochsSB">
        <property name="maximum">
-        <number>10000</number>
+        <number>1000000</number>
        </property>
        <property name="value">
         <number>50</number>
@@ -161,7 +161,7 @@
      <item row="0" column="0">
       <widget class="QLabel" name="weight0Lbl">
        <property name="text">
-        <string>Weight 0:</string>
+        <string>W0:</string>
        </property>
       </widget>
      </item>
@@ -175,7 +175,7 @@
      <item row="1" column="0">
       <widget class="QLabel" name="weight1Lbl">
        <property name="text">
-        <string>Weight 1:</string>
+        <string>W1:</string>
        </property>
       </widget>
      </item>
@@ -189,7 +189,7 @@
      <item row="2" column="0">
       <widget class="QLabel" name="weight2Lbl">
        <property name="text">
-        <string>Weight 2:</string>
+        <string>W2:</string>
        </property>
       </widget>
      </item>
