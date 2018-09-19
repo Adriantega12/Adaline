@@ -10,6 +10,9 @@ class TrainingPlot {
         QCPGraph* redPoints;
         QCPGraph* bluePoints;
 
+        QVector<double> lineX;
+        QVector<double> lineY;
+
         void addPoint( double x, double y );
 
     public:
@@ -17,6 +20,8 @@ class TrainingPlot {
         ~TrainingPlot();
 
         void setup( QCustomPlot* plot );
+
+        void updatePlot(double slope, double yIntercept);
 
         void addRedPoint( double x, double y );
         void addBluePoint( double x, double y );

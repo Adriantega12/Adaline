@@ -60,7 +60,7 @@ void TrainingModule::updateGUI() {
     updateLabels();
     }
 
-void TrainingModule::train() {
+void TrainingModule::train( TrainingPlot* tp ) {
     double error;
     double squaredError = 1.0;
     currentEpoch = 0;
@@ -77,8 +77,8 @@ void TrainingModule::train() {
             weight2 += learningRate * error *
                     activationFunctionDerivative( TrainingModule::sigmoidFunction, inputAndWeightsPointProduct( trainingSet[j].x, trainingSet[j].y ) );
             }
-        qDebug() << currentEpoch++ << ": " << squaredError;
-        //currentEpoch++;
+        tp->updatePlot( getSlope(), getYIntercept() );
+        qDebug() << currentEpoch++ << ": " << error;
         }
     }
 
