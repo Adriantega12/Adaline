@@ -33,7 +33,15 @@ void MainWindow::plotClick( QMouseEvent* evt ) {
 
         if ( ui->classifyCB->isChecked() ) {
             double type = trainingModule->getType( x, y );
-            qDebug() << type;
+            std::cout << type << std::endl;
+            if ( type <= 0 ) {
+                trainingPlot->addRedPoint( x, y );
+                trainingModule->addPoint( x, y, TrainingModule::RED );
+                }
+            else {
+                trainingPlot->addBluePoint( x, y );
+                trainingModule->addPoint( x, y, TrainingModule::BLUE );
+                }
             return;
             }
 

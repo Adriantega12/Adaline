@@ -10,11 +10,17 @@ TrainingPlot::TrainingPlot( QCustomPlot* plot ) {
 
     // Line
     plot->addGraph();
-    lineX.push_back(-5);
-    lineX.push_back(5);
+    lineX.push_back(-6);
+    lineX.push_back(0);
+    lineX.push_back(6);
+    lineY.push_back(0);
     lineY.push_back(0);
     lineY.push_back(0);
 
+    /*for ( unsigned int i = 0; i < 100; ++i ) {
+        lineX.push_back( (i < 50) * (-6.0 / 100) * i + ( i >= 50 ) * ( 6.0/100 ) * i  );
+        lineY.push_back(0.0);
+        }*/
 
     setup( plot );
     }
@@ -59,9 +65,15 @@ void TrainingPlot::setup( QCustomPlot* plot ) {
 void TrainingPlot::updatePlot(double slope, double yIntercept) {
     lineY[0] = lineX[0] * slope + yIntercept;
     lineY[1] = lineX[1] * slope + yIntercept;
+    lineY[2] = lineX[2] * slope + yIntercept;
+
+    /*for ( unsigned int i = 0; i < lineY.size(); ++i ) {
+        lineY[i] = lineX[i] * slope + yIntercept;
+        }*/
 
     trainingPlot->graph(2)->setData(lineX, lineY);
     trainingPlot->replot();
+    trainingPlot->repaint();
     }
 
 void TrainingPlot::addRedPoint( double x, double y ) {

@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+#include <iostream>
+
 #include "trainingplot.h"
 #include "trainingmodule.h"
 

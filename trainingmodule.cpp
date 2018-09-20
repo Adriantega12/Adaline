@@ -68,7 +68,7 @@ void TrainingModule::train( TrainingPlot* tp ) {
     currentEpoch = 0;
 
     while (currentEpoch < maxEpochs and squaredError > desiredError) {
-        // Epoch learning
+        // ---- Start epoch -----
         squaredError = error = 0.0;
         for ( unsigned int j = 0; j < trainingSet.size(); ++j ) {
             error = getError( trainingSet[j], sigmoidFunction );
@@ -94,14 +94,14 @@ void TrainingModule::addPoint( double x, double y, int type ) {
     trainingSet.push_back( p = { x, y, type } );
 }
 
-int TrainingModule::getType(double x, double y) {
+double TrainingModule::getType(double x, double y) {
     return inputAndWeightsPointProduct( x, y );
     }
 
 double TrainingModule::getSlope() {
-    return - ( weight0 / weight2 ) / ( weight0 / weight1 );
+    return - ( ( weight0 / weight2 ) / ( weight0 / weight1 ) );
     }
 
 double TrainingModule::getYIntercept() {
-    return weight0 / weight2;
+    return weight0 / weight2/* + 0.5*/;
     }

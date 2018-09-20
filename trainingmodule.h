@@ -65,7 +65,7 @@ class TrainingModule {
 
         void addPoint( double x, double y, int type = RED );
 
-        int getType( double x, double y );
+        double getType( double x, double y );
 
         double getSlope();
         double getYIntercept();
