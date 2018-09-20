@@ -33,7 +33,7 @@ void MainWindow::plotClick( QMouseEvent* evt ) {
 
         if ( ui->classifyCB->isChecked() ) {
             double type = trainingModule->getType( x, y );
-            qDebug() << type << (type < 0.5 ? TrainingModule::RED : TrainingModule::BLUE);
+            qDebug() << type;
             return;
             }
 
@@ -56,5 +56,4 @@ void MainWindow::on_initializeBttn_clicked() {
 
 void MainWindow::on_trainBttn_clicked() {
     trainingModule->train( trainingPlot );
-    //trainingPlot->updatePlot( trainingModule->getSlope(), trainingModule->getYIntercept() );
     }

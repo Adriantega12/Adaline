@@ -5,7 +5,7 @@ void TrainingModule::updateLabels() {
     w1Lbl->setText( QString::number( weight1 ) );
     w2Lbl->setText( QString::number( weight2 ) );
     currentEpochLbl->setText( QString::number( currentEpoch ) );
-    convergenceEpochLbl->setText( QString::number( convEpoch ) );
+    convergenceEpochLbl->setText( QString::number( 0 ) );
     }
 
 double TrainingModule::inputAndWeightsPointProduct(double x, double y) {
@@ -26,7 +26,7 @@ double TrainingModule::getError(Pair p, std::function<double (double)> activatio
     }
 
 TrainingModule::TrainingModule()
-    : weight0(0.0), weight1(0.0), weight2(0.0), currentEpoch(0), convEpoch(0),
+    : weight0(0.0), weight1(0.0), weight2(0.0), currentEpoch(0),
       maxEpochs(99999), learningRate(0.0), desiredError(0.0), rdg(-5.0, 5.0) {
 
     }
@@ -68,6 +68,7 @@ void TrainingModule::train( TrainingPlot* tp ) {
     currentEpoch = 0;
 
     while (currentEpoch < maxEpochs and squaredError > desiredError) {
+        // Epoch learning
         squaredError = error = 0.0;
         for ( unsigned int j = 0; j < trainingSet.size(); ++j ) {
             error = getError( trainingSet[j], sigmoidFunction );
@@ -78,10 +79,14 @@ void TrainingModule::train( TrainingPlot* tp ) {
             weight1 += learningRate * error * actFuncDerivative * trainingSet[j].x;
             weight2 += learningRate * error * actFuncDerivative * trainingSet[j].y;
             }
-        updateGUI( tp );
         currentEpoch++;
-        qDebug() << currentEpoch << ":" << "Error:"<< error << "Error cuadrático:" << squaredError;
+        // ---- Finish epoch ----
+
+        updateGUI( tp );
         }
+
+    // Actualizar época de convergencia
+    convergenceEpochLbl->setText( QString::number( currentEpoch ) );
     }
 
 void TrainingModule::addPoint( double x, double y, int type ) {

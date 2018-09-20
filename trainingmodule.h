@@ -24,7 +24,6 @@ class TrainingModule {
         double weight2;
 
         unsigned int currentEpoch;
-        unsigned int convEpoch;
         unsigned int maxEpochs;
         double learningRate;
         double desiredError;
