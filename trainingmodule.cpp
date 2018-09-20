@@ -6,7 +6,7 @@ void TrainingModule::updateLabels() {
     w2Lbl->setText( QString::number( weight2 ) );
     currentEpochLbl->setText( QString::number( currentEpoch ) );
     convergenceEpochLbl->setText( QString::number( convEpoch ) );
-}
+    }
 
 double TrainingModule::inputAndWeightsPointProduct(double x, double y) {
     return x * weight1 + y * weight2 - weight0;
@@ -56,13 +56,15 @@ void TrainingModule::updateValues() {
 
     }
 
-void TrainingModule::updateGUI() {
+void TrainingModule::updateGUI( TrainingPlot* tp ) {
+    tp->updatePlot( getSlope(), getYIntercept() );
     updateLabels();
     }
 
 void TrainingModule::train( TrainingPlot* tp ) {
     double error;
     double squaredError = 1.0;
+    double actFuncDerivative;
     currentEpoch = 0;
 
     while (currentEpoch < maxEpochs and squaredError > desiredError) {
@@ -70,15 +72,15 @@ void TrainingModule::train( TrainingPlot* tp ) {
         for ( unsigned int j = 0; j < trainingSet.size(); ++j ) {
             error = getError( trainingSet[j], sigmoidFunction );
             squaredError += (error * error) / 2;
-            weight0 += learningRate * error *
-                    activationFunctionDerivative( TrainingModule::sigmoidFunction, inputAndWeightsPointProduct( trainingSet[j].x, trainingSet[j].y ) );
-            weight1 += learningRate * error *
-                    activationFunctionDerivative( TrainingModule::sigmoidFunction, inputAndWeightsPointProduct( trainingSet[j].x, trainingSet[j].y ) );
-            weight2 += learningRate * error *
-                    activationFunctionDerivative( TrainingModule::sigmoidFunction, inputAndWeightsPointProduct( trainingSet[j].x, trainingSet[j].y ) );
+            actFuncDerivative = activationFunctionDerivative( TrainingModule::sigmoidFunction,
+                                inputAndWeightsPointProduct( trainingSet[j].x, trainingSet[j].y ) );
+            weight0 += learningRate * error * actFuncDerivative * (-1);
+            weight1 += learningRate * error * actFuncDerivative * trainingSet[j].x;
+            weight2 += learningRate * error * actFuncDerivative * trainingSet[j].y;
             }
-        tp->updatePlot( getSlope(), getYIntercept() );
-        qDebug() << currentEpoch++ << ": " << error;
+        updateGUI( tp );
+        currentEpoch++;
+        qDebug() << currentEpoch << ":" << "Error:"<< error << "Error cuadrático:" << squaredError;
         }
     }
 
@@ -86,6 +88,10 @@ void TrainingModule::addPoint( double x, double y, int type ) {
     Pair p;
     trainingSet.push_back( p = { x, y, type } );
 }
+
+int TrainingModule::getType(double x, double y) {
+    return inputAndWeightsPointProduct( x, y );
+    }
 
 double TrainingModule::getSlope() {
     return - ( weight0 / weight2 ) / ( weight0 / weight1 );

@@ -31,6 +31,12 @@ void MainWindow::plotClick( QMouseEvent* evt ) {
         double x = ui->trainingPlot->xAxis->pixelToCoord( evt->x() ),
                y = ui->trainingPlot->yAxis->pixelToCoord( evt->y() );
 
+        if ( ui->classifyCB->isChecked() ) {
+            double type = trainingModule->getType( x, y );
+            qDebug() << type << (type < 0.5 ? TrainingModule::RED : TrainingModule::BLUE);
+            return;
+            }
+
         // Add points according to the selected class
         if ( ui->redRB->isChecked() ) {
             trainingPlot->addRedPoint( x, y );
@@ -45,7 +51,7 @@ void MainWindow::plotClick( QMouseEvent* evt ) {
 
 void MainWindow::on_initializeBttn_clicked() {
     trainingModule->setup( ui->maxEpochsSB->value(), ui->learnRateSB->value(), ui->desiredErrorSB->value() );
-    trainingModule->updateGUI();
+    trainingModule->updateGUI( trainingPlot );
     }
 
 void MainWindow::on_trainBttn_clicked() {

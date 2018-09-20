@@ -60,11 +60,13 @@ class TrainingModule {
         void setup(unsigned int mE, double lR, double dE);
 
         void updateValues();
-        void updateGUI();
+        void updateGUI( TrainingPlot* tp );
 
         void train( TrainingPlot* tp );
 
         void addPoint( double x, double y, int type = RED );
+
+        int getType( double x, double y );
 
         double getSlope();
         double getYIntercept();
