@@ -61,11 +61,12 @@ void TrainingModule::updateGUI( TrainingPlot* tp ) {
     updateLabels();
     }
 
-void TrainingModule::train(TrainingPlot* tp , ErrorPlot* eP ) {
+void TrainingModule::adalineTraining( TrainingPlot* tp, ErrorPlot *eP ) {
     double error;
     double squaredError = 1.0;
     double actFuncDerivative;
     currentEpoch = 0;
+    eP->clear();
 
     while (currentEpoch < maxEpochs and squaredError > desiredError) {
         // ---- Start epoch -----
@@ -81,11 +82,42 @@ void TrainingModule::train(TrainingPlot* tp , ErrorPlot* eP ) {
             }
         currentEpoch++;
         // ---- Finish epoch ----
-        qDebug() << squaredError;
-        eP->addData( currentEpoch, squaredError );
+
         updateGUI( tp );
+        eP->addData( currentEpoch, squaredError );
         }
 
+    // Actualizar época de convergencia
+    convergenceEpochLbl->setText( QString::number( currentEpoch ) );
+    }
+
+void TrainingModule::perceptronTraining(TrainingPlot *tp, ErrorPlot *eP) {
+    int error;
+    int accumError;
+    bool done = false;
+    currentEpoch = 0;
+    eP->clear();
+
+    while ( currentEpoch < maxEpochs and !done ) {
+        // ---- Start epoch -----
+        done = true;
+        accumError = 0;
+        for ( unsigned int j = 0; j < trainingSet.size(); ++j ) {
+            error = trainingSet[j].type - (inputAndWeightsPointProduct( trainingSet[j].x, trainingSet[j].y ) >= 0);
+            if ( error != 0 ) {
+                done = false;
+                accumError++;
+                weight0 += learningRate * error * (-1);
+                weight1 += learningRate * error * trainingSet[j].x;
+                weight2 += learningRate * error * trainingSet[j].y;
+                }
+            }
+        currentEpoch++;
+        // ---- Finish epoch ----
+
+        updateGUI( tp );
+        eP->addData( currentEpoch, accumError );
+        }
     // Actualizar época de convergencia
     convergenceEpochLbl->setText( QString::number( currentEpoch ) );
     }

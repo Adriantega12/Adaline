@@ -62,7 +62,8 @@ class TrainingModule {
         void updateValues();
         void updateGUI( TrainingPlot* tp );
 
-        void train( TrainingPlot* tp, ErrorPlot* eP );
+        void adalineTraining( TrainingPlot* tp, ErrorPlot* eP );
+        void perceptronTraining( TrainingPlot* tp, ErrorPlot* eP );
 
         void addPoint( double x, double y, int type = RED );
 

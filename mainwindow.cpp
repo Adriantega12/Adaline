@@ -65,5 +65,10 @@ void MainWindow::on_initializeBttn_clicked() {
     }
 
 void MainWindow::on_trainBttn_clicked() {
-    trainingModule->train( trainingPlot, errorPlot );
+    if ( ui->adalineRB->isChecked() ) {
+        trainingModule->adalineTraining( trainingPlot, errorPlot );
+        }
+    else if ( ui->perceptronRB->isChecked() ) {
+        trainingModule->perceptronTraining( trainingPlot, errorPlot );
+        }
     }

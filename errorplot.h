@@ -11,6 +11,7 @@ class ErrorPlot {
         ErrorPlot( QCustomPlot* );
 
         void addData( double epoch, double squaredError );
+        void clear();
     };
 
 #endif // ERRORPLOT_H
