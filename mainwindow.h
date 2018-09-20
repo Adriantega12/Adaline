@@ -6,6 +6,7 @@
 #include <iostream>
 
 #include "trainingplot.h"
+#include "errorplot.h"
 #include "trainingmodule.h"
 
 namespace Ui {
@@ -23,6 +24,7 @@ class MainWindow : public QMainWindow {
         Ui::MainWindow *ui;
         TrainingPlot* trainingPlot;
         TrainingModule* trainingModule;
+        ErrorPlot* errorPlot;
 
     public slots:
         void plotClick( QMouseEvent* );

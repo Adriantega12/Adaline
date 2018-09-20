@@ -10,6 +10,7 @@
 
 #include "randdouble.h"
 #include "trainingplot.h"
+#include "errorplot.h"
 
 class TrainingModule {
     private:
@@ -61,7 +62,7 @@ class TrainingModule {
         void updateValues();
         void updateGUI( TrainingPlot* tp );
 
-        void train( TrainingPlot* tp );
+        void train( TrainingPlot* tp, ErrorPlot* eP );
 
         void addPoint( double x, double y, int type = RED );
 

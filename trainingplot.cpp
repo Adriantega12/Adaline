@@ -73,7 +73,6 @@ void TrainingPlot::updatePlot(double slope, double yIntercept) {
 
     trainingPlot->graph(2)->setData(lineX, lineY);
     trainingPlot->replot();
-    trainingPlot->repaint();
     }
 
 void TrainingPlot::addRedPoint( double x, double y ) {

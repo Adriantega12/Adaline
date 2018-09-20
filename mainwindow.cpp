@@ -17,12 +17,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Training plot setup
     trainingPlot = new TrainingPlot( ui->trainingPlot );
+    errorPlot = new ErrorPlot( ui->errorPlot );
     connect( ui->trainingPlot, SIGNAL( mousePress(QMouseEvent*) ), this, SLOT( plotClick(QMouseEvent*) ) );
     }
 
 MainWindow::~MainWindow() {
     delete trainingPlot;
     delete trainingModule;
+    delete errorPlot;
     delete ui;
     }
 
@@ -63,5 +65,5 @@ void MainWindow::on_initializeBttn_clicked() {
     }
 
 void MainWindow::on_trainBttn_clicked() {
-    trainingModule->train( trainingPlot );
+    trainingModule->train( trainingPlot, errorPlot );
     }

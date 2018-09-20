@@ -61,7 +61,7 @@ void TrainingModule::updateGUI( TrainingPlot* tp ) {
     updateLabels();
     }
 
-void TrainingModule::train( TrainingPlot* tp ) {
+void TrainingModule::train(TrainingPlot* tp , ErrorPlot* eP ) {
     double error;
     double squaredError = 1.0;
     double actFuncDerivative;
@@ -81,7 +81,8 @@ void TrainingModule::train( TrainingPlot* tp ) {
             }
         currentEpoch++;
         // ---- Finish epoch ----
-
+        qDebug() << squaredError;
+        eP->addData( currentEpoch, squaredError );
         updateGUI( tp );
         }
 
