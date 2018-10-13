@@ -10,7 +10,7 @@ void TrainingModule::updateLabels() {
 
 double TrainingModule::inputAndWeightsPointProduct(double x, double y) {
     return x * weight1 + y * weight2 - weight0;
-}
+	}
 
 double TrainingModule::sigmoidFunction(double xVal) {
     return 1.0 / (1.0 + qExp( -xVal ) );
